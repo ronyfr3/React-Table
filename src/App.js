@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./sass/main.scss";
+import AliceCarousel from "react-alice-carousel";
 
-function App() {
+const items = [
+  <img src="img1.jpg" alt="" className="imgg" />,
+  <img src="img2.jpg" alt="" className="imgg" />,
+  <img src="img3.jpg" alt="" className="imgg" />,
+  <img src="img4.jpg" alt="" className="imgg" />,
+];
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="carousel_wrapper">
+      <AliceCarousel
+        items={items}
+        animationType="fadeout"
+        animationDuration={800}
+        autoPlayInterval={2000}
+        autoPlayDirection="ltr"
+        autoHeight
+        autoWidth
+        autoPlay
+        stopAutoPlayOnHover
+        // disableButtonsControls
+        disableDotsControls
+        mouseTracking
+        infinite
+        responsive={{
+          0: { items: 1 },
+          576: { items: 1 },
+          768: { items: 2 },
+          1024: { items: 3 },
+        }}
+        controlsStrategy="responsive"
+      />{" "}
     </div>
   );
-}
+};
 
 export default App;

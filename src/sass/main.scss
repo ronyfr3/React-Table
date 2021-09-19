@@ -1,0 +1,60 @@
+@import "react-alice-carousel/lib/scss/alice-carousel.scss";
+* {
+  margin: 0;
+}
+.carousel_wrapper {
+  width: 100%;
+  position: relative;
+  .alice-carousel__prev-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -100%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: black;
+    font-size: 30px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    right: 0;
+  }
+  .alice-carousel__prev-btn-item {
+    font-weight: 600;
+    color: white;
+  }
+  .alice-carousel__next-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(-50%, -100%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: black;
+    font-size: 30px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    right: 0;
+  }
+  .alice-carousel__next-btn-item {
+    font-weight: 600;
+    color: white;
+  }
+  .imgg {
+    padding: 0 10px 0 10px;
+    width: 300px;
+    height: 250px;
+    @media (max-width: 768px) {
+      width: 100%;
+      height: 250px;
+      padding: 0;
+    }
+  }
+}
