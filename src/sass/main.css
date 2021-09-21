@@ -1,7 +1,26 @@
+input {
+  width: 100px;
+}
+
 table {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 50%;
+  border: 1px solid #d6d5d5;
+}
+
+table th span {
+  margin-left: 0.1rem;
+}
+
+table th span .uparrow {
+  font-size: 18px;
+  color: #fbff06;
+}
+
+table th span .downarrow {
+  font-size: 18px;
+  color: #fbff06;
 }
 
 table td,
@@ -15,17 +34,54 @@ table tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-table tr:hover {
-  background-color: #ddd;
-  cursor: pointer;
-}
-
 table th,
 tfoot td {
   padding-top: 12px;
   padding-bottom: 12px;
   background-color: #34a065;
   color: white;
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+    width: 90%;
+  }
+  table thead {
+    overflow: hidden;
+    padding: 0;
+  }
+  table tr {
+    display: block;
+    margin-bottom: 0.625em;
+    -webkit-box-shadow: 0 0 5px 1px #c7c7c7;
+            box-shadow: 0 0 5px 1px #c7c7c7;
+    margin: 0 0 1rem 0;
+  }
+  table td {
+    display: block;
+    font-size: 0.8em;
+    text-align: right;
+  }
+  table td:nth-child(2n) {
+    background-color: #f8f8f8;
+  }
+  table td::before {
+    /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  table td:last-child {
+    border-bottom: 0;
+  }
+  tfoot {
+    display: none;
+  }
 }
 
 .imageStyle {

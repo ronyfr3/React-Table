@@ -1,10 +1,10 @@
 import React, { useMemo } from "react";
-import { useTable } from "react-table";
+import { useTable, useSortBy } from "react-table";
 import DATA from "./data.json";
 import { COLUMNS, GROUPED_COLUMN } from "./Column";
 import FlexStyle from "rakib-flex-style";
 
-const BasicTable = () => {
+const SortingTable = () => {
   //useTable hooks need useMemo hook to memoize rows and columns
   //useMemo to prevent recreating same data on every render
   //TO ADD GROUPED COLUMN REPLACE COLUMNS TO GROUPED_COLUMN --> const columns = useMemo(() => GROUPED_COLUMN, []);
@@ -12,11 +12,14 @@ const BasicTable = () => {
   const data = useMemo(() => DATA, []);
 
   //creating table instance
-  const tableInstance = useTable({
-    //two properties: COLUMN || ROWS
-    columns,
-    data,
-  });
+  const tableInstance = useTable(
+    {
+      //two properties: COLUMN || ROWS
+      columns,
+      data,
+    },
+    useSortBy
+  );
   //Destructuring properties and methods from tableInstance
   const {
     getTableBodyProps,
@@ -33,7 +36,20 @@ const BasicTable = () => {
           {headerGroups.map((x) => (
             <tr {...x.getHeaderGroupProps()}>
               {x.headers.map((column) => (
-                <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                  {column.render("Header")}
+                  <span>
+                    {column.isSorted ? (
+                      column.isSortedDesc ? (
+                        <span className="downarrow">&or;</span>
+                      ) : (
+                        <span className="uparrow">&and;</span>
+                      )
+                    ) : (
+                      ""
+                    )}
+                  </span>
+                </th>
               ))}
             </tr>
           ))}
@@ -73,4 +89,4 @@ const BasicTable = () => {
   );
 };
 
-export default BasicTable;
+export default SortingTable;
